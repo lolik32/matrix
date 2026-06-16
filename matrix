@@ -1,0 +1,48 @@
+class Matrix:
+    def __init__(self, m, n, por):
+        Инициализация матрицы
+        Параметры:
+        m - количество строк
+        n - количество столбцов
+        por - способ хранения ('r' - по строкам, 'c' - по столбцам)
+        self.stroki = m          
+        self.stolb = n          
+        self.hran = por          
+        self.d = [0] * (m * n)   
+    def zap(self, spisok):
+        Заполнение матрицы из двумерного списка
+        Параметры:
+        spisok - двумерный список (список строк)
+        if self.hran == 'r':
+            # Хранение по строкам: последовательно записываем каждую строку
+            for i in range(self.stroki):
+                for j in range(self.stolb):
+                    self.d[i * self.stolb + j] = spisok[i][j]
+        else:
+             Хранение по столбцам: записываем элементы по столбцам
+            for i in range(self.stroki):
+                for j in range(self.stolb):
+                    self.d[j * self.stroki + i] = spisok[i][j]
+    def pechat(self):
+        Вывод матрицы на экран в удобочитаемом виде
+        if self.hran == 'r':
+             Вывод при построчном хранении
+            for i in range(self.stroki):
+                s = ''
+                for j in range(self.stolb):
+                    s += f"{self.d[i * self.stolb + j]:6.2f} "  # форматированный вывод
+                print(s)
+        else:
+             Вывод при постолбцовом хранении
+            for i in range(self.stroki):
+                s = ''
+                for j in range(self.stolb):
+                    s += f"{self.d[j * self.stroki + i]:6.2f} "
+                print(s)
+ Создание и заполнение матрицы
+A = Matrix(3, 3, 'r')
+A.zap([[1, -2, 3],
+           [-4, 5, -6],
+           [7, -8, 9]])
+print("Исходная матрица A:")
+A.pechat()
